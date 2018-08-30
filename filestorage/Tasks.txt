@@ -1,2 +1,0 @@
-add pending to db default false
-add filepath and imagepath

@@ -2,6 +2,7 @@ package com.extensionrepository.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.CodePointLength;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -48,6 +49,24 @@ public class Extension {
 
     @Column(name = "file_name")
     private String fileName;
+
+    @Column(name = "open_issues")
+    private int openIssues;
+
+    @Column(name = "pull_requests")
+    private int pullRequests;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name="last_commit")
+    private Date lastCommit;
+
+    public Date getLastCommit() {
+        return lastCommit;
+    }
+
+    public void setLastCommit(Date lastCommit) {
+        this.lastCommit = lastCommit;
+    }
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
@@ -170,5 +189,22 @@ public class Extension {
 
     public void setTags(Set<Tag> tags) {
         this.tags = tags;
+    }
+
+
+    public int getOpenIssues() {
+        return openIssues;
+    }
+
+    public void setOpenIssues(int openIssues) {
+        this.openIssues = openIssues;
+    }
+
+    public int getPullRequests() {
+        return pullRequests;
+    }
+
+    public void setPullRequests(int pullRequests) {
+        this.pullRequests = pullRequests;
     }
 }

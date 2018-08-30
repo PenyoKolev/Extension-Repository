@@ -3,6 +3,8 @@ package com.extensionrepository.controller.mvcController;
 import com.extensionrepository.dto.ExtensionDto;
 import com.extensionrepository.entity.Extension;
 import com.extensionrepository.entity.User;
+//import com.extensionrepository.service.GitHubService;
+import com.extensionrepository.service.GitHubService;
 import com.extensionrepository.service.base.ExtensionService;
 import com.extensionrepository.service.base.FileStorageService;
 import com.extensionrepository.service.base.UserService;
@@ -65,6 +67,8 @@ public class ExtensionUploadController {
                     extensionDto.getFile().getOriginalFilename(),
                     extensionDto.getRepositoryLink()
             );
+
+            extension = GitHubService.fetchGithubInfo(extension);
 
             extensionService.save(extension);
 
